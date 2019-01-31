@@ -24,7 +24,7 @@ def download_emojis(json):
         emoji_file.write(emoji["shortcode"] + ", /emoji/" + emoji["shortcode"] + "." + file_extension[1] + "\n")
         all_files.append(emoji["shortcode"] + "." + file_extension[1])
     emoji_file.close()
-    answer = input("Do you want me to move them to the right repository for you?(y/n)")
+    answer = input("Do you want me to move them to the right directory for you?(y/n)")
     if answer == "y":
         print("I'm assuming pleroma is in /home/pleroma/pleroma as the tutorial suggests.")
         if os.path.isdir("/home/pleroma/pleroma/priv/static/emoji"):
