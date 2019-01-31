@@ -46,7 +46,7 @@ def main():
     instance_url = None
     try:
         instance_url = sys.argv[1]
-    except KeyError:
+    except IndexError:
         print("You need to specify a url.")
         exit(0)
     api_url = treat_url(instance_url)
