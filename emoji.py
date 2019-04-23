@@ -28,9 +28,9 @@ def download_emojis(json):
     answer = input("Do you want me to move them to the right directory for you?(y/n)")
     if answer == "y":
         print("I'm assuming pleroma is in /opt/pleroma/, and that you are using the Static Directory in the default location (instance/static/) as the tutorial suggests.")
-        if os.path.isdir("/opt/pleroma/instance/static/emoji/custom"):
+        if os.path.isdir("/opt/pleroma/instance/static/emoji/custom/"):
             for f in all_files:
-                os.rename(f, "/opt/pleroma/instance/static/emoji/custom" + f)
+                os.rename(f, "/opt/pleroma/instance/static/emoji/custom/" + f)
         else:
             print("Directory doesn't exist, exiting...")
             exit(0)
