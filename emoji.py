@@ -13,7 +13,7 @@ def read_api(api_url):
 
 def download_emojis(json):
     print("The script will automatically append them to an emoji.txt file if you ever want to add them to your pleroma instance.")
-    #happy, /emoji/
+    #happy, /emoji/custom/happy.png
     all_files = []
     emoji_file= open("emoji.txt","a")
     for emoji in json:
@@ -22,15 +22,15 @@ def download_emojis(json):
         file_extension = file_extension[0].split(".")
         print("Downloading: " + emoji["shortcode"] + "." + file_extension[1])
         urlretrieve (emoji["static_url"], "./" + emoji["shortcode"] + "." + file_extension[1])
-        emoji_file.write(emoji["shortcode"] + ", /emoji/" + emoji["shortcode"] + "." + file_extension[1] + "\n")
+        emoji_file.write(emoji["shortcode"] + ", /emoji/custom" + emoji["shortcode"] + "." + file_extension[1] + "\n")
         all_files.append(emoji["shortcode"] + "." + file_extension[1])
     emoji_file.close()
     answer = input("Do you want me to move them to the right directory for you?(y/n)")
     if answer == "y":
-        print("I'm assuming pleroma is in /home/pleroma/pleroma as the tutorial suggests.")
-        if os.path.isdir("/home/pleroma/pleroma/priv/static/emoji"):
+        print("I'm assuming pleroma is in /opt/pleroma/, and that you are using the Static Directory in the default location (instance/static/) as the tutorial suggests.")
+        if os.path.isdir("/opt/pleroma/instance/static/emoji/custom"):
             for f in all_files:
-                os.rename(f, "/home/pleroma/pleroma/priv/static/emoji/" + f)
+                os.rename(f, "/opt/pleroma/instance/static/emoji/custom" + f)
         else:
             print("Directory doesn't exist, exiting...")
             exit(0)
